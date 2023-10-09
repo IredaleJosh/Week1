@@ -1,13 +1,14 @@
 #include <stdio.h>
 int main() {
     int a;
-    int b;
-    int c;
-    printf("Enter an integer: ");
-    scanf("%d", &a);
-    printf("Enter another integer: ");
-    scanf("%d", &b);
-    c = a + b;
-    printf("the sum of %f and %f is %d\n", a, b, c);
+    float b;
+    double c;
+    char d;
+
+    printf("Int size is: %zu bytes\n", a);
+    printf("Float size is: %zu bytes\n", b);
+    printf("Double size is: %zu bytes\n", c);
+    printf("Char size is: %zu bytes\n", d);
+
 
 }
