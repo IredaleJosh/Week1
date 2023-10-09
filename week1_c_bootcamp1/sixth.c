@@ -3,8 +3,14 @@
 int main(){
     int a;
     printf("Enter an integer: ");
-    //use an if to check if this divides by 2#
-    //output even if it does and odd if it doesnt
-
+    scanf("%d", a);
+    if(a % 2 == 0)
+    {
+        printf("%d is even", a);
+    }
+    else
+    {
+        printf("%d is odd", a);
+    }
     return 0;
 }
