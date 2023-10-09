@@ -1,14 +1,12 @@
 #include <stdio.h>
 int main() {
     int a;
-    float b;
-    double c;
-    char d;
-
-    printf("Int size is: %zu bytes\n", a);
-    printf("Float size is: %zu bytes\n", b);
-    printf("Double size is: %zu bytes\n", c);
-    printf("Char size is: %zu bytes\n", d);
-
-
+    int b;
+    printf("Enter an integer: ");
+    scanf("%d", &a);
+    for (i = 0; i < a; i++){
+        b = b * i;
+    }
+    printf("The factorial of %d is %d\n", a, b);
+    return 0;
 }
