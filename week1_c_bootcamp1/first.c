@@ -1,8 +1,8 @@
 #include <stdio.h>
 int main() {
-    double a;
-    double new_a;
-    double dis;
+    float a;
+    float new_a;
+    float dis;
     printf("Enter number of days: ");
     scanf("%d", &a);
     new_a = a * 8640;
