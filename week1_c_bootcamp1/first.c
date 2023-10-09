@@ -1,12 +1,12 @@
 #include <stdio.h>
 int main() {
     int a;
-    int b;
-    printf("Enter an integer: ");
+    int new_a;
+    int dis;
+    printf("Enter number of days: ");
     scanf("%d", &a);
-    for (i = 0; i < a; i++){
-        b = b * i;
-    }
-    printf("The factorial of %d is %d\n", a, b);
+    new_a = a * 24 * 3600;
+    dis = 300000000 * new_a;
+    printf("The distance is %d\n", dis);
     return 0;
 }
