@@ -1,11 +1,7 @@
 #include <stdio.h>
 int main()
 {
-    float money;
-    float temp_p;
-    float percentage;
-    float years;
-    float interest;
+    float money, temp_p, percentage, years, interest; //can initialise variables of same type in 1 line 
     printf("Enter money: ");
     scanf("%f", &money);
     printf("Enter percentage: ");

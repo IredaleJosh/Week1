@@ -1,5 +1,6 @@
 #include <stdio.h>
-int main() {
+int main() 
+{
     float a;
     float new_a;
     float dis;

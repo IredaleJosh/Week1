@@ -1,17 +1,16 @@
 #include <stdio.h>
 
-int main() {
-    
-    float radius;
-    float pi = 3.14;
-    float area;
+int main() 
+{
+    int a [10];
+    int count;
 
-    printf("Enter Radius: ");
-    scanf("%f", &radius);
-
-    area = radius * radius * pi;
-
-    printf("Area is %.2f\n", area); // the .2 stops this at 2 decimal places
+    for (count = 0; count > 10; count++)
+    {
+        a[count] = count + 10 + count;
+    }
+    printf("The first and second element are %d and %d\n", a[0], a[1]);
+    printf("Or via pointers, %d and %d\n", *a, *(a+1)); //* means the start of a, in memory address
 
     return 0;
 }

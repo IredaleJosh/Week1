@@ -1,11 +1,27 @@
 #include <stdio.h>
 
-int main(){
-    float a;
-    float b;
-    printf("Enter farenheit: ");
-    scanf("%f", &a);
-    b = (a - 32) * 5/9;
-    printf("The temperature in celcius is %.2f\n", b);
+int main()
+{
+    int length = 0;
+    char b[] = "Hello";
+
+    while (b[length] != '\0')
+    {
+        length++;
+
+    }
+
+    for (int i = length; i >= 0; i--)
+    {
+        if(b[i] == '\0')
+        {
+            printf("\\0   ");
+        }
+        else
+        {
+            printf("%c   ", b[i]);
+        }
+    }
+
     return 0;
 }
