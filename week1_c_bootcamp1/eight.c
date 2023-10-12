@@ -2,6 +2,7 @@
 int main()
 {
     float money;
+    float temp_p;
     float percentage;
     float years;
     float interest;
@@ -11,7 +12,8 @@ int main()
     scanf("%f", &percentage);
     printf("Enter years: ");
     scanf("%f", &years);
-    interest = money * percentage * years;
+    temp_p = percentage / 100;
+    interest = money * temp_p* years;
     printf("The simple interest is %.2f\n", interest);
     return 0;
 }
