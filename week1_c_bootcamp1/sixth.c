@@ -1,16 +1,20 @@
 #include <stdio.h>
 
-int main(){
+int main()
+{
     int a;
-    printf("Enter an integer: ");
+    printf("Enter a number: ");
     scanf("%d", &a);
-    if(a % 2 == 0)
+
+    while (a != -1)
     {
-        printf("%d is even", a);
+        printf("Enter a number: ");
+        scanf("%d", &a);
+        if((a < 0 || a > 100) && a != -1)
+        {
+            printf("The number must be between 0 and 100\n");
+        }
     }
-    else
-    {
-        printf("%d is odd", a);
-    }
+    printf("Terminate Program\n");
     return 0;
 }
