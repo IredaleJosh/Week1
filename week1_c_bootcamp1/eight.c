@@ -1,15 +1,57 @@
+Bronze
+
 #include <stdio.h>
-int main()
+
+int circle_area(float radius)
 {
-    float money, temp_p, percentage, years, interest; //can initialise variables of same type in 1 line 
-    printf("Enter money: ");
-    scanf("%f", &money);
-    printf("Enter percentage: ");
-    scanf("%f", &percentage);
-    printf("Enter years: ");
-    scanf("%f", &years);
-    temp_p = percentage / 100;
-    interest = money * temp_p* years;
-    printf("The simple interest is %.2f\n", interest);
+    float area = radius * radius * 3.14;
+    return area;
+}
+
+int main() 
+{
+    float radius = 6.45;
+    float answer = circle_area(radius);
+    printf("Answer is %.2f\n", answer);
     return 0;
 }
+
+#include <stdio.h>
+
+int sphere_volume(float radius)
+{
+    float volume = radius * radius * radius * 3.14 * 4/3;
+    return volume;
+}
+
+int main() 
+{
+    float radius = 6.45;
+    float answer = sphere_volume(radius);
+    printf("Answer is %.2f\n", answer);
+    return 0;
+}
+
+
+Silver
+
+#include <stdio.h>
+
+int str_len(char word)
+{
+    int count = 0;
+    while(word[count] != '\0')
+    {
+        count++;
+    }
+    return count;
+}
+
+int main() 
+{
+    char word [] = "People";
+    int length = str_len(word);
+    printf("The length of the word is %d\n", length);
+    return 0;
+}
+
