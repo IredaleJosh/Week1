@@ -1,13 +1,36 @@
 #include <stdio.h>
-int main() {
-    float a;
-    float b = 3.641;
-    float c; //changed to float, as int is whole numbers
 
-    a = 2.897;
-    c = a + b;
+int is_Prime(int a) //need * for passing pointers, more on slides
+{
+    int i = 2;
+    int b = 0;
+    while (i != 9)
+    {
+        if(a % i == 0)
+        {
+            b = 1;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return b;
+}
 
-    printf ("The sum of adding %f and %f is %f\n", a, b, c); //must change from d to f, as float data type
-
+int main() 
+{
+    int a;
+    printf("Enter an integer: ");
+    scanf("%d\n", &a);
+    int prime = is_Prime(a);
+    if(prime == 1)
+    {
+        printf("The integer %d is prime", a);
+    }
+    else
+    {
+        printf("The integer %d is NOT prime", a);
+    }
     return 0;
 }

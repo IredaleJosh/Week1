@@ -8,7 +8,6 @@ int main()
     while (b[length] != '\0')
     {
         length++;
-
     }
 
     for (int i = length; i >= 0; i--)
