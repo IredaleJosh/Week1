@@ -1,36 +1,20 @@
 #include <stdio.h>
 
-int is_Prime(int a) //need * for passing pointers, more on slides
+int main()
 {
-    int i = 2;
-    int b = 0;
-    while (i != 9)
+    int a;
+    printf("Enter a number: ");
+    scanf("%d\n", &a);
+    
+    for (int i = 2; i < a; i++)
     {
         if(a % i == 0)
         {
-            b = 1;
+            printf("Prime");
         }
         else
         {
-            i++;
+            printf("Not Prime");
         }
     }
-    return b;
-}
-
-int main() 
-{
-    int a;
-    printf("Enter an integer: ");
-    scanf("%d\n", &a);
-    int prime = is_Prime(a);
-    if(prime == 1)
-    {
-        printf("The integer %d is prime", a);
-    }
-    else
-    {
-        printf("The integer %d is NOT prime", a);
-    }
-    return 0;
 }
