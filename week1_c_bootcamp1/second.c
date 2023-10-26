@@ -1,30 +1,51 @@
 #include <stdio.h>
 
-int is_prime(int a)
+int str_len(char *str_1, char *str_2)
 {
-    int found = 0;
-    for (int i = 2; i < a; i++)
+    int count = 0;
+    while(str_1 [count] != '\0')
     {
-        if(a % i == 0)
+        count++;
+    }
+    return count;
+
+    while(str_2 [count] != '\0')
+    {
+        count++;
+    }
+    return count;
+}
+
+char conc(char *str_1, char *str_2, int total)
+{
+    char str_3 [total];
+    int count = 0;
+
+    for(int i = 0; i < total; i++)
+    {
+        if(str_1[i] == '\0')
         {
-            return 0;
-            found = 1;
-            break;
+            str_3[i] = str_2[count];
+            count ++;
+        }
+        else
+        {
+            str_3[i] = str_1[i];
         }
     }
 
-    if(found == 0)
-    {
-        return 1;
-    }
+    return *str_3;
 }
 
-int main()
+int main ()
 {
-    int a, b;
-    printf("Enter number:");
-    scanf("%d", &a);
-    b = is_prime(a);
-    printf("%d\n", b);
+    char str_1 [] = "Hell";
+    char str_2 [] = "World";
 
+    int len_1 = str_len(str_1, str_2);
+    int len_2 = str_len(str_2, str_2);
+    int total = len_1 + len_2;
+    char str_4 [total];
+
+    str_4 = conc(str_1, str_2, total);
 }
