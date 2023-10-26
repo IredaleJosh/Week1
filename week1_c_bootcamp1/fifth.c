@@ -1,57 +1,34 @@
 #include <stdio.h>
 
-float fahr_to_celsius (float f_temp)
+typedef struct 
 {
-    float c_temp;
-    c_temp = (f_temp - 32)/1.8;
-    return c_temp;
-}
+    char name [6];
+    char student_id [5];
+    unsigned mark;
+} student;
 
-float fahr_to_kelvin (float f_temp)
+int main()
 {
-    float k_temp;
-    k_temp = fahr_to_celsius(f_temp) + 273.15;
-    return k_temp;
-}
-float fahr_to_newton (float f_temp)
-{
-    float n_temp;
-    n_temp = (f_temp - 32) / 5.45454555;
-    return n_temp;
-}
-
-int main () 
-{
-    float fahrenheit;
-    char option;
-
-    printf ("Enter a temperature to convert in Fahrenheit:\n");
-    scanf ("%f", &fahrenheit);
-
-    printf ("\n");
-    printf ("Select A to convert to Celsius\n");
-    printf ("Select B to convert to Kelvin\n");
-    printf ("Select C to convert to Newton\n");
-    printf ("Select Q to quit\n");
-
-    scanf(" %c", &option);
-
-    switch (option)
+    int number_of_students = 10;
+    student students [] = {};
+    for (int i = 0; i < number_of_students; i++)
     {
-        case 'A': printf ("Converted to degrees Celsius: %f\n", fahr_to_celsius(fahrenheit));
-                  break;
-
-        case 'B': printf ("Converted to Kelvin: %f\n", fahr_to_kelvin(fahrenheit));
-                  break;
-
-        case 'C': printf("Converted to Newton temperature scale: %f/n", fahr_to_newton(fahrenheit));
-                  break;
-
-        case 'Q': break;
-
-        default:  printf("Not an Option");
-                  break;
+        printf("Enter student name: ");
+        scanf("%s\n", students[i].name);
+        printf("Enter student ID: ");
+        scanf("%s\n", students[i].student_id);
+        printf("Enter final mark: ");
+        scanf("%u\n", &students[i].mark);
+        printf("------------\n");
     }
 
+    for (int i = 0; i < number_of_students; i++)
+    {
+        printf("-----------\n");
+        printf("Student name: %s\n", students[i].name);
+        printf("Student ID: %s\n", students[i].student_id);
+        printf("Final Mark: %u\n", students[i].mark);
+    }
+    printf("----------------\n");
     return 0;
 }

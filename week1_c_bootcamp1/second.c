@@ -1,20 +1,30 @@
 #include <stdio.h>
 
-int main()
+int is_prime(int a)
 {
-    int a = 17, i = 2, found = 0;
-
-    while(a != i || found == 1)
+    int found = 0;
+    for (int i = 2; i < a; i++)
     {
-        if (a % i == 0)
+        if(a % i == 0)
         {
-            printf("Prime");
+            return 0;
+            found = 1;
+            break;
         }
     }
 
-    if(found == 1)
+    if(found == 0)
     {
-        printf("Not Prime");
+        return 1;
     }
+}
+
+int main()
+{
+    int a, b;
+    printf("Enter number:");
+    scanf("%d", &a);
+    b = is_prime(a);
+    printf("%d\n", b);
 
 }
