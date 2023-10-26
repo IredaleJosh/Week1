@@ -2,19 +2,19 @@
 
 int main()
 {
-    int a;
-    printf("Enter a number: ");
-    scanf("%d\n", &a);
-    
-    for (int i = 2; i < a; i++)
+    int a = 17, i = 2, found = 0;
+
+    while(a != i || found == 1)
     {
-        if(a % i == 0)
+        if (a % i == 0)
         {
             printf("Prime");
         }
-        else
-        {
-            printf("Not Prime");
-        }
     }
+
+    if(found == 1)
+    {
+        printf("Not Prime");
+    }
+
 }
