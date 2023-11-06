@@ -1,0 +1,45 @@
+Bronze
+
+#include <Adafruit_Microbit.h>
+
+Adafruit_Microbit_Matrix microbit;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("Ready");
+  microbit.begin();
+  pinMode(PIN_BUTTON_A, INPUT);
+  pinMode(PIN_BUTTON_B, INPUT);
+}
+
+void loop()
+{
+  if(!digitalRead(PIN_BUTTON_A))
+  {
+    microbit.show(microbit.HEART);
+  }
+  if(!digitalRead(PIN_BUTTON_B))
+  {
+    microbit.show(microbit.YES);
+  }
+  delay(10);
+}
+
+#define OVERSAMPLE 50
+
+void loop()
+{
+  bleSERIAL.poll();
+  float avgtemp = 0;
+  for (int i = 0; i < OVERSAMPLE; i++)
+  {
+    int32_t temp;
+    do {
+      temp = temperature_data_get();
+    }
+    while (temp == 0)
+    avgtemp += temp;
+    delay(1);
+  }
+}
