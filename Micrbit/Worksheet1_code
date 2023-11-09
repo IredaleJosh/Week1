@@ -1,5 +1,6 @@
-Bronze
 
+
+Bronze - Task 1
 #include <Adafruit_Microbit.h>
 
 Adafruit_Microbit_Matrix microbit;
@@ -26,6 +27,8 @@ void loop()
   delay(10);
 }
 
+
+Bronze - Task 2
 #define OVERSAMPLE 50
 
 void loop()
@@ -43,3 +46,161 @@ void loop()
     delay(1);
   }
 }
+
+
+Bronze - Task 3
+#include <Adafruit_Microbit.h>
+
+Adafruit_Microbit_Matrix microbit;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("Ready");
+  microbit.begin();
+  pinMode(PIN_BUTTON_A, INPUT);
+  pinMode(PIN_BUTTON_B, INPUT);
+}
+
+  int count = 0;
+  bool pressed_A = false;
+  bool pressed_B = false;
+
+void loop()
+{
+  if(!digitalRead(PIN_BUTTON_A) && pressed_A == false)
+  {
+    pressed_A = true;
+    count= count + 1;
+    Serial.println("Button A pressed");
+    microbit.print(count);
+  }
+  if(!digitalRead(PIN_BUTTON_B) && pressed_B == false)
+  {
+    pressed_B = true;
+    count = count - 1;
+    
+    Serial.println("Button B pressed");
+    microbit.print(count);
+  }
+  if(digitalRead(PIN_BUTTON_A) && pressed_A == true)
+  {
+    pressed_A = false;
+  }
+  if(digitalRead(PIN_BUTTON_B) && pressed_B == true)
+  {
+    pressed_B = false;
+  }
+  delay(10);
+}
+
+
+Silver - Task 1
+#include <Adafruit_Microbit.h>
+
+Adafruit_Microbit_Matrix microbit;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("Ready");
+  microbit.begin();
+  pinMode(PIN_BUTTON_A, INPUT);
+}
+
+  int count = 0;
+  bool pressed_A = false;
+
+void loop()
+{
+  if(!digitalRead(PIN_BUTTON_A) && pressed_A == false)
+  {
+    count = random(1, 7);
+    microbit.print(count);
+    pressed_A = true;
+  }
+
+  if(digitalRead(PIN_BUTTON_A) && pressed_A == true)
+  {
+    pressed_A = false;
+  }
+  delay(10);
+}
+
+
+Silver Task 2
+
+
+
+
+Silver - Task 3
+#include <Adafruit_Microbit.h>
+
+Adafruit_Microbit_Matrix microbit;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("Ready");
+  microbit.begin();
+  pinMode(PIN_BUTTON_A, INPUT);
+  pinMode(PIN_BUTTON_B, INPUT);
+}
+
+  float count = 0;
+
+void loop()
+{
+  if(!digitalRead(PIN_BUTTON_A))
+  {
+    count = count + 0.1;
+    delay(4.4);
+  }
+  if(!digitalRead(PIN_BUTTON_B))
+  {
+    microbit.print(count);
+    count = 0;
+  }
+}
+
+
+Gold - Task 1
+
+
+Gold - Task 2
+#include <Adafruit_Microbit.h>
+
+Adafruit_Microbit_Matrix microbit;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("Ready");
+  microbit.begin();
+  pinMode(PIN_BUTTON_A, INPUT);
+  pinMode(PIN_BUTTON_B, INPUT);
+}
+
+  float count = 0;
+
+void loop()
+{
+  delay(random(1000, 8000));
+  microbit.show(microbit.HEART);
+  //start timer to measure reaction speed
+  count = count + 0.1;
+  delay(4.4);
+  //button A pressed
+  if(!digitalRead(PIN_BUTTON_A))
+  {
+    microbit.clear();
+    microbit.print(count);
+  }
+  count = 0;
+}
+
+Gold - Task 3
+
+
+Plat. - Task
+

@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-//creates file
-int main()
-{
+int main() {
     char filename [] = "data.txt";
-    FILE *file = fopen(filename, "w"); //opens file for writing, with w, other file handling stuff: a, w+, a+
-    if(file == NULL) //this part is good practice, but not necessary
-    {
-        perror(""); // returns error message if anything happens
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("");
         return 1;
     }
 
-    fclose(file); //closes file immediately after
+    int buffer_size = 100;
+    char line_buffer[buffer_size];
+    while (fgets(line_buffer, buffer_size, file) != NULL) {
+        printf("%s\n", line_buffer);
+    }
+
+    fclose(file);
     return 0;
 }
