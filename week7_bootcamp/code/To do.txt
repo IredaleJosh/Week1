@@ -1,0 +1,6 @@
+Make function E work
+
+Make utilis hold each option, and the code file can call and run them
+Make utilis open the file and take user input
+
+Make format nice/ clean up code
