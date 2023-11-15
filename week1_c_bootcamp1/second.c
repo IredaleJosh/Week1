@@ -1,51 +1,37 @@
 #include <stdio.h>
+#include <stdlib.h> //to use atoi
+#include <string.h> //use strlen
 
-int str_len(char *str_1, char *str_2)
+int main()
 {
-    int count = 0;
-    while(str_1 [count] != '\0')
+    //open files
+    char filename [] = "numbers.dat";
+    FILE *file = fopen(filename, "a+");
+    if (file == NULL)
     {
-        count++;
+        perror("");
+        return 1;
     }
-    return count;
 
-    while(str_2 [count] != '\0')
+    //Read from the "square.dat" file
+    int buffer_size = 10;
+    float sum;
+    int total;
+    char line_buffer[buffer_size];
+    while(fgets(line_buffer, buffer_size, file) != NULL)
     {
-        count++;
-    }
-    return count;
-}
-
-char conc(char *str_1, char *str_2, int total)
-{
-    char str_3 [total];
-    int count = 0;
-
-    for(int i = 0; i < total; i++)
-    {
-        if(str_1[i] == '\0')
+        sum = sum + atof(line_buffer); //convert string to integer
+        total++;
+        //gets the lenght of the array holding the number and checks
+        //when no more numbers, then adds new line to stop while loop
+        if (line_buffer[strlen(line_buffer)-1] != '\n')
         {
-            str_3[i] = str_2[count];
-            count ++;
-        }
-        else
-        {
-            str_3[i] = str_1[i];
+            fprintf(file, "\n");
         }
     }
+    fprintf(file, "%f", sum / total);
 
-    return *str_3;
-}
-
-int main ()
-{
-    char str_1 [] = "Hell";
-    char str_2 [] = "World";
-
-    int len_1 = str_len(str_1, str_2);
-    int len_2 = str_len(str_2, str_2);
-    int total = len_1 + len_2;
-    char str_4 [total];
-
-    str_4 = conc(str_1, str_2, total);
+    //closes file
+    fclose(file);
+    return 0;
 }

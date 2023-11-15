@@ -3,7 +3,8 @@
 int main() {
     char filename [] = "data.txt";
     FILE *file = fopen(filename, "r");
-    if (file == NULL) {
+    if (file == NULL) 
+    {
         perror("");
         return 1;
     }
