@@ -5,6 +5,8 @@
 
 // declaring this value so I can use it in different places
 #define buffer_size 100
+char line[buffer_size];
+char filename[buffer_size];
 
 /**
  * @brief Struct to hold each daily reading, contains the date as a string
@@ -60,21 +62,15 @@ void tokeniseRecord(const char *input, const char *delimiter,
  * @param mode the mode (r/w/a/r+/w+/a+)
  * @return FILE* The file object to store the opened file in.
  */
-FILE *open_file(char *filename, char *mode)
+FILE *open_file(char *filename)
 {
-    
-}
-
-/**
- * @brief Reads the data from the input file into an array of structs
- *
- * @param inputFile the open file object
- * @param dataArray the array of readings
- * @return int Returns the number of readings from the file
- */
-int read_file(FILE *inputFile, reading *dataArray)
-{
-
+    FILE *input = fopen(filename, "r");
+    if (!input)
+    {
+        printf("Error: File could not be opened\n");
+        exit(1);
+    }
+    return input;
 }
 
 /**
@@ -86,9 +82,32 @@ int read_file(FILE *inputFile, reading *dataArray)
  */
 int data_checker(reading *dataArray, int numReadings)
 {
-    // to do
+
 }
 
+/**
+ * @brief Reads the data from the input file into an array of structs
+ *
+ * @param inputFile the open file object
+ * @param dataArray the array of readings
+ * @return int Returns the number of readings from the file
+ */
+void display_file(reading *dataArray, int numReadings, FILE *input)
+{
+    numReadings = 0;
+    while (fgets(line, buffer_size, input))
+    {
+        // split up the line and store it in the right place
+        // using the & operator to pass in a pointer to the bloodIron so it stores it
+        tokeniseRecord(line, ",", dataArray[numReadings].date, &dataArray[numReadings].bloodIron);
+        numReadings++;
+    }
+    for (int i = 0; i < numReadings; i++)
+    {
+        printf("%s - Blood iron: %.1f\n", dataArray[i].date, dataArray[i].bloodIron);
+    }
+    fclose(input);
+}
 
 /**
  * @brief Calculates and returns the mean of the readings in the array
@@ -97,9 +116,21 @@ int data_checker(reading *dataArray, int numReadings)
  * @param numReadings The number of readings in the array
  * @return float The mean of the readings.
  */
-float find_mean(reading* dataArray, int numReadings)
+float find_mean(reading* dataArray, int numReadings, FILE *input)
 {
-    // to do
+    float mean;
+    while (fgets(line, buffer_size, input))
+    {
+        // split up the line and store it in the right place
+        // using the & operator to pass in a pointer to the bloodIron so it stores it
+        tokeniseRecord(line, ",", dataArray[numReadings].date, &dataArray[numReadings].bloodIron);
+        mean += dataArray[numReadings].bloodIron;
+        numReadings++;
+    }
+    mean /= numReadings;
+    printf("Your average blood iron was %.2f\n", mean);
+    fclose(input);
+    return mean;
 }
 
 /**
@@ -109,27 +140,24 @@ float find_mean(reading* dataArray, int numReadings)
  * @param numReadings The number of readings in the array
  * @return float The highest blood iron reading
  */
-float find_highest(reading* dataArray, int numReadings)
+float find_highest(reading* dataArray, int numReadings, FILE *input)
 {
-// "    counter = 0;
-//     while (fgets(line, buffer_size, input))
-//     {
-//         // split up the line and store it in the right place
-//         // using the & operator to pass in a pointer to the bloodIron so it stores it
-//         tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
-//         if (counter == 0) //stores a value to lowest_blood, so it can compare
-//         {
-//             lowest_blood = daily_readings[counter].bloodIron;
-//         }
-//         if (daily_readings[counter].bloodIron < lowest_blood)
-//         {
-//             lowest_blood = daily_readings[counter].bloodIron;
-//         }
-//         counter++;
-//     }
-//     printf("Your lowest blood iron was %.2f\n", lowest_blood);
-//     fclose(input);"
-    
+    numReadings = 0;
+    float highest_blood = 0;
+    while (fgets(line, buffer_size, input))
+    {
+        // split up the line and store it in the right place
+        // using the & operator to pass in a pointer to the bloodIron so it stores it
+        tokeniseRecord(line, ",", dataArray[numReadings].date, &dataArray[numReadings].bloodIron);
+        if (dataArray[numReadings].bloodIron > highest_blood)
+        {
+            highest_blood = dataArray[numReadings].bloodIron;
+        }
+        numReadings++;
+    }
+    printf("Your highest blood iron was %.2f\n", highest_blood);
+    fclose(input);
+    return highest_blood;
 }
 
 /**
@@ -139,11 +167,28 @@ float find_highest(reading* dataArray, int numReadings)
  * @param numReadings The number of readings in the array
  * @return float The lowest blood iron reading
  */
-float find_lowest(reading* dataArray, int numReadings)
+float find_lowest(reading* dataArray, int numReadings, FILE *input)
 {
-    // to do
+    numReadings = 0;
+    float lowest_blood = 0;
+    while (fgets(line, buffer_size, input))
+    {
+        // split up the line and store it in the right place
+        // using the & operator to pass in a pointer to the bloodIron so it stores it
+        tokeniseRecord(line, ",", dataArray[numReadings].date, &dataArray[numReadings].bloodIron);
+        if (numReadings == 0) //stores a value to lowest_blood, so it can compare
+        {
+            lowest_blood = dataArray[numReadings].bloodIron;
+        }
+        if (dataArray[numReadings].bloodIron < lowest_blood)
+        {
+            lowest_blood = dataArray[numReadings].bloodIron;
+        }
+        numReadings++;
+    }
+    printf("Your lowest blood iron was %.2f\n", lowest_blood);
+    fclose(input);
 }
-
 
 /**
  * @brief Ask the user for the month to find, and then print out all readings containing that month.
