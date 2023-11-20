@@ -1,0 +1,46 @@
+#include "FitnessDataStruct.h"
+
+int main()
+{
+    printf("Enter file name to access: ");
+    fgets(line, buffer_size, stdin);
+    sscanf(line, " %s ", filename);
+    
+    //Options
+    printf("A: Specify the filename to be imported\n");  
+    printf("B: Display the total number of records in the file\n");      
+    printf("C: Find the date and time of the timeslot with fewest steps\n");
+    printf("D: Find the date and time of the timeslot with the largest number of steps\n");     
+    printf("E: Find the mean step count of all records in the file\n");
+    printf("F: Find the largest continuous period where the step count is above 500 steps\n");
+    printf("Q: Exit the program\n");
+
+    option = getchar()
+
+    switch(option)
+    {
+        case "A":
+        //input filename to import
+
+        case "B":
+        //display total number of records
+
+        case "C":
+        //find the date and time of the timeslot with FEWEST steps
+
+        case "D":
+        //find the date and time of the timeslot with LARGEST steps
+
+        case "E":
+        //Find the mean step count of all the records in the file
+
+        case "F":
+        //find the largest continous period where the step count is above 500 steps
+
+        case "Q":
+            return 0;
+            break;
+
+        default;
+    }
+}
