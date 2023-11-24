@@ -6,9 +6,10 @@
 // Struct moved to header file
 
 // Define any additional variables here
-char 
 // Global variables for filename and FITNESS_DATA array
-
+#define buffer_size 100
+char line [buffer_size];
+char filename[buffer_size];
 
 // This is your helper function. Do not change it in any way.
 // Inputs: character array representing a row; the delimiter character
@@ -38,24 +39,13 @@ void tokeniseRecord(const char *input, const char *delimiter,
     free(inputCopy);
 }
 
-//functions for option A - F here
-FILE *input_filename(char *filename)
-{
-    FILE *filename = fopen(filename, "r");
-    if(!filename)
-    {
-        printf("Error: Could not fine or open the file");
-        return 1;
-    }
-    return filename
-}
-
 // Complete the main function
 int main() 
 {
     //Loop through forever until program exits
     while(1)
     {
+        char option;
         //Display choices
         printf("Select one of the following options\n");
         printf("A: Specify the filename to be imported\n");
@@ -67,16 +57,22 @@ int main()
         printf("Q: Exit program\n");
 
         option = getchar();
-        while(getchar() != '\n');
+
+        while (getchar() != '\n');
 
         //Options - make a function
-        switch(option)
+        switch (option)
         {
             case "A":
                 printf("Input Filename: ");
                 fgets(line, buffer_size, stdin);
                 sscanf(line, " %s ", filename);
-                FILE *input = input_filename();
+                FILE *file = fopen(filename, "r");
+                if(file == NULL)
+                {
+                    printf("Incorrect filename, try again");
+                    return 1;
+                }
                 break;
             case "B":
                 //record_number
@@ -96,7 +92,7 @@ int main()
             case "Q":
                 return 0;
                 break;
-            default;
+            default:
                 printf("Invalid choice, try again");
                 break;
         }
