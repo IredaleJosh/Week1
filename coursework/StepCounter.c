@@ -6,7 +6,7 @@
 // Struct moved to header file
 
 // Define any additional variables here
-int record_num, step_counter, counter, need_counter, start, end, average;
+int record_num, step_counter, counter, need_counter, start, end, average, int_steps;
 float temp_mean, mean;
 
 // Global variables for filename and FITNESS_DATA array
@@ -15,6 +15,7 @@ char line [buffer_size];
 char filename[buffer_size];
 char line_count[24];
 FITNESS_DATA step_reading [100];
+char char_steps[5];
 
 // This is your helper function. Do not change it in any way.
 // Inputs: character array representing a row; the delimiter character
@@ -107,8 +108,6 @@ int main()
                 need_counter = 0; //stores the line of where the fewest steps are
                 while(fgets(line, buffer_size, file))
                 {
-                    char char_steps [5];
-                    int int_steps;
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
                     if (counter == 0)
@@ -130,8 +129,6 @@ int main()
                 need_counter = 0; //stores the line of where the fewest steps are
                 while(fgets(line, buffer_size, file))
                 {
-                    char char_steps [5];
-                    int int_steps;
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
                     if (int_steps > step_counter)
@@ -146,10 +143,9 @@ int main()
                 break;
             case 'E':
                 counter = 0;
+                mean = 0;
                 while(fgets(line, buffer_size, file))
                 {
-                    char char_steps [5];
-                    int int_steps;
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
                     mean = int_steps + mean;
@@ -169,8 +165,6 @@ int main()
                 int con = 1;
                 while(fgets(line, buffer_size, file))
                 {
-                    char char_steps [5];
-                    int int_steps;
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
 
