@@ -6,7 +6,7 @@
 // Struct moved to header file
 
 // Define any additional variables here
-int record_num, step_counter, counter, need_counter, start, end, average, int_steps;
+int record_num, step_counter, counter, need_counter, temp_counter, average, int_steps, con;
 float temp_mean, mean;
 
 // Global variables for filename and FITNESS_DATA array
@@ -163,34 +163,28 @@ int main()
                 break;
             case 'F':
                 counter = 0;
-                int con = 1;
+                con = 1;
                 while(fgets(line, buffer_size, file))
                 {
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
-
-                    if (int_steps >= 500 && con == 1)
-                    {
-                        need_counter++;
-                    }
-                    else if (int_steps < 500 && con == 1)
-                    {
-                        if (end - start < need_counter)
-                        {
-                            end = counter;
-                            start = counter - need_counter;
-                        }
-                        need_counter = 0;
-                        con = 0;
-                    }
-                    else if (int_steps > 500 && con == 0)
+                    if (int_steps >= 500 && con == 0)
                     {
                         con = 1;
                     }
+                    else if (int_steps >= 500 && con == 1)
+                    {
+                        need_counter++;
+                    }
+                    else if (int_steps > 500 && con == 1)
+                    {
+                        temp_counter = counter;
+                        con = 0;
+                    }
+                    printf("%d\n", temp_counter);
                     counter++;
                 }
-                printf("Longest period start: %s %s\n", step_reading[start].date, step_reading[start].time);
-                printf("Longest period end: %s %s\n", step_reading[end].date, step_reading[end].time);
+                need_counter = 0;
                 file = openfile(filename);
                 break;
             case 'Q':
