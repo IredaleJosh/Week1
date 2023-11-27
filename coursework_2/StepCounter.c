@@ -180,7 +180,6 @@ int main()
                             end = counter;
                             start = counter - need_counter + 1;
                             need_counter = 0;
-                            printf("%d    %d     %d\n", temp_counter, start, end);
                         }
                     }
                     counter++;                    
