@@ -163,6 +163,7 @@ int main()
                 break;
             case 'F':
                 counter = 0;
+                need_counter = 0;
                 while(fgets(line, buffer_size, file))
                 {
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
@@ -181,6 +182,7 @@ int main()
                             //As previous one would be >500
                             end = counter - 1;
                             start = counter - need_counter;
+                            printf("%d    %d\n", start, end);
                         }
                         need_counter = 0;
                     }
