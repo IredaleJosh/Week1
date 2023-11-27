@@ -204,8 +204,8 @@ int main()
                     }
                     counter++;
                 }
-                printf("Longest Period Start: %s %s\n", step_reading[start].date, step_reading[start].time);
-                printf("Longest Period End: %s %s\n", step_reading[end].date, step_reading[end].time);
+                printf("Longest period start: %s %s\n", step_reading[start].date, step_reading[start].time);
+                printf("Longest period end: %s %s\n", step_reading[end].date, step_reading[end].time);
                 start, end = 0;
                 file = openfile(filename);
                 break;
