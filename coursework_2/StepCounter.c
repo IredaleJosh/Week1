@@ -186,18 +186,14 @@ int main()
                         //Checks if new period is bigger than previous found one
                         if (end - start < need_counter)
                         {
+                            end = counter;
+                            start = counter - need_counter;
                             //If the final steps = 500, then go back 1
                             if (int_steps == 500)
                             {
-                                end = counter - 1;
+                                end--;
+                                start--;
                             }
-                            //If not set current counter as pointer
-                            else
-                            {
-                                end = counter;
-                            }
-                            //Set start pointer of period
-                            start = counter - need_counter;
                         }
                         need_counter = 0;
                         con = 0;
