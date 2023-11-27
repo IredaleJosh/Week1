@@ -45,6 +45,7 @@ void tokeniseRecord(const char *input, const char *delimiter,
     free(inputCopy);
 }
 
+//Seperate file, called after each option
 FILE *openfile(char *filename)
 {
     FILE *file = fopen(filename, "r");
@@ -58,7 +59,6 @@ FILE *openfile(char *filename)
         printf("File loaded successfully\n");
         return file;
     }
-    
 }
 
 // Complete the main function
@@ -169,24 +169,38 @@ int main()
                 {
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
                     int_steps = atoi(char_steps);
-                    //Whenever steps value is greater than 500
-                    if (int_steps >= 500 && con == 1)
+
+                    //We reach steps > 500 and con is false -> set to true
+                    if (int_steps > 500 && con == 0)
+                    {
+                        con = 1;
+                    }
+                    //If steps > 500 and con is true -> count
+                    else if (int_steps > 500 && con == 1)
                     {
                         need_counter++;
                     }
-                    else if (int_steps < 500 && con == 1)
+                    //If steps <= 500 and con is true -> set pointers and con to false
+                    else if (int_steps <= 500 && con == 1)
                     {
+                        //Checks if new period is bigger than previous found one
                         if (end - start < need_counter)
                         {
-                            end = counter;
+                            //If the final steps = 500, then go back 1
+                            if (int_steps == 500)
+                            {
+                                end = counter - 1;
+                            }
+                            //If not set current counter as pointer
+                            else
+                            {
+                                end = counter;
+                            }
+                            //Set start pointer of period
                             start = counter - need_counter;
                         }
                         need_counter = 0;
                         con = 0;
-                    }
-                    else if (int_steps > 500 && con == 0)
-                    {
-                        con = 1;
                     }
                     counter++;
                 }
