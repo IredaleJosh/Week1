@@ -13,7 +13,6 @@ float temp_mean, mean;
 #define buffer_size 100
 char line [buffer_size];
 char filename[buffer_size];
-char line_count[24];
 FITNESS_DATA step_reading [100];
 char char_steps[5];
 
@@ -84,7 +83,7 @@ int main()
         while (getchar() != '\n');
 
         //Options - make a function
-        switch ( option)
+        switch (option)
         {
             case 'A':
                 //Get filename
@@ -97,10 +96,11 @@ int main()
                 break;
             case 'B':
                 record_num = 0;
-                while(fgets(line_count, 24, file) != NULL)
+                while(fgets(line, buffer_size, file))
                 {
                     record_num = record_num + 1;
                 }
+                
                 printf("Total records: %d\n", record_num);
                 file = openfile(filename);
                 break;
@@ -122,6 +122,7 @@ int main()
                     }
                     counter++;
                 }
+
                 printf("Fewest steps: %s %s\n", step_reading[need_counter].date, step_reading[need_counter].time);
                 file = openfile(filename);
                 break;
@@ -152,18 +153,21 @@ int main()
                     mean = int_steps + mean;
                     counter++;
                 }
+                //Calc and round mean
                 average = mean / counter;
                 temp_mean = (mean/(float)counter) - average;
                 if(temp_mean >= 0.5)
                 {
                     average++;
                 }
+
                 printf("Mean step count: %d\n", average);
                 file = openfile(filename);
                 break;
             case 'F':
                 counter = 0;
                 need_counter = 0;
+                temp_counter = 0;
                 while(fgets(line, buffer_size, file))
                 {
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
@@ -182,15 +186,14 @@ int main()
                             //As previous one would be >500
                             end = counter - 1;
                             start = counter - need_counter;
-                            printf("%d    %d\n", start, end);
                         }
                         need_counter = 0;
                     }
                     counter++;                    
                 }
+
                 printf("Longest period start: %s %s\n", step_reading[start].date, step_reading[start].time);
                 printf("Longest period end: %s %s\n", step_reading[end].date, step_reading[end].time);
-                start, end, temp_counter, need_counter = 0;
                 file = openfile(filename);
                 break;
             case 'Q':
