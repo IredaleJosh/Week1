@@ -174,18 +174,20 @@ int main()
                     }
                     else if (int_steps <= 500)
                     {
+                        //Set pointers when new period > previous
                         if(need_counter > temp_counter)
                         {
                             temp_counter = need_counter;
-                            end = counter;
-                            start = counter - need_counter + 1;
-                            need_counter = 0;
+                            //As previous one would be >500
+                            end = counter - 1;
+                            start = counter - need_counter;
                         }
+                        need_counter = 0;
                     }
                     counter++;                    
                 }
-                printf("Longest period start: %s %s\n", step_reading[start - 1].date, step_reading[start - 1].time);
-                printf("Longest period end: %s %s\n", step_reading[end - 1].date, step_reading[end - 1].time);
+                printf("Longest period start: %s %s\n", step_reading[start].date, step_reading[start].time);
+                printf("Longest period end: %s %s\n", step_reading[end].date, step_reading[end].time);
                 start, end, temp_counter, need_counter = 0;
                 file = openfile(filename);
                 break;
