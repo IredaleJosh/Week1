@@ -40,10 +40,9 @@ int main()
     #define buffer_size 100
     char line [buffer_size];
     char filename [buffer_size];
-    FitnessData read [100];
     char char_steps [5];
-    int counter, int_steps;
-    char del [] = ",";
+    int counter = 0, int_steps;
+    FitnessData Store_Array [buffer_size];
 
     //Get filename
     printf("Enter filename: ");
@@ -57,17 +56,21 @@ int main()
         printf("Error: Incorrect File\n");
         return 1;
     }
-    //Check if correct format
+    //Check store into an array
     while(fgets(line, buffer_size, file))
     {
-        tokeniseRecord(line, *del , read[counter].date, read[counter].time, &read[counter].steps);
-        //Check if date and time is empty
-        if (read[counter].date == " " || read[counter].time == " ")
+        FitnessData read;
+        tokeniseRecord(line, ',', read.date, read.time, &read.steps);
+        Store_Array[counter] = read;
+        counter++;
+    }
+    for(int i = 0; i < counter; i++)
+    {
+        if(Store_Array[i].time == NULL)
         {
-            printf("Error: Incorrect File\n");
+            printf("Error");
             return 1;
         }
-        counter++;
     }
 
     //Read file into array

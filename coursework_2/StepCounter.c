@@ -110,6 +110,7 @@ int main()
                 while(fgets(line, buffer_size, file))
                 {
                     tokeniseRecord(line, ",", step_reading[counter].date, step_reading[counter].time, char_steps);
+                    printf("%s\n", step_reading[counter].date);
                     int_steps = atoi(char_steps);
                     if (counter == 0)
                     {
