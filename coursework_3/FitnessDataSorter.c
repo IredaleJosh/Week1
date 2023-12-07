@@ -26,29 +26,20 @@ void tokeniseRecord(char *record, char delimiter, char *date, char *time, int *s
     }
 }
 
-//Sort data from highest step at top to lowest
-//in tab seperated values (.tsv) format - make space via \t
-
-//1.2) check file is valid, AND data is correct format, then print out msg and return 1
-//2) and sort data into descending order (if same step count, be
-//consecutive but order doesn't matter)
-//3) write data to filename of same name, with file extenstion .tsv and return 0
-
-
-
-// int comparator(const void *a, const void *b)
-// {
-//     FitnessData *FitnessData_A = (FitnessData *)a;
-//     FitnessData *FitnessData_B = (FitnessData *)b;
-//     return (FitnessData_A-> steps - FitnessData_B-> steps);
-// }
-
-    void swap(int* a, int* b)
+//Swapping Functions
+void int_swap(int* a, int* b)
 {
     int temp;
     temp = *a;
     *a = *b;
     *b = temp;
+}
+void string_swap(char *a, char *b)
+{
+    char temp [10];
+    strcpy(temp, a);
+    strcpy(a, b);
+    strcpy(b, temp);
 }
 
 int main() 
@@ -85,19 +76,19 @@ int main()
         counter++;
     }
 
-        //Sort array
+    //Sort array
     int swapped = 1;
     for (int i = 0; i < counter - 1; i++)
     {
         swapped = 0; //Starts False
         for (int j = 0; j < (counter - i - 1); j++)
         {
-            //if current element bigger than next one
-            if(Store_Array[j].steps > Store_Array[j + 1].steps)
+            //if current element bigger than next one, swap all array stuff
+            if(Store_Array[j].steps < Store_Array[j + 1].steps)
             {
-                swap(&Store_Array[j].steps, &Store_Array[j+1].steps); //Swap steps
-                //Swap Time
-                //Swap Date
+                int_swap(&Store_Array[j].steps, &Store_Array[j+1].steps); //Swap step
+                string_swap(Store_Array[j].time, Store_Array[j+1].time); //Swap time
+                string_swap(Store_Array[j].date, Store_Array[j+1].date); //Swap date
                 swapped = 1; //Set to True
             }
         }
@@ -107,15 +98,20 @@ int main()
         }
     }
 
-    for(int i; i < counter; i++)
+    //Sort into new file with .tsv
+    char filename_2 [] = 
+    FILE *file_2 = fopen(filename_2, "w");
+    if(file_2 == NULL)
     {
-        printf("%s %s %d\n", Store_Array[i].date, Store_Array[i].time, Store_Array[i].steps);
+        perror("");
+        return 1;
     }
 
+    for(int i = 0; i < counter; i++)
+    {
+        fprintf(file_2, "%s %s %d\n", Store_Array[i].date, Store_Array[i].time, Store_Array[i].steps);
+    }
 
-
-    //Sort into new file with .tsv
-
+    fclose(file_2);
     return 0;
-
 }
