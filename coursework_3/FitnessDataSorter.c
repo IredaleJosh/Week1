@@ -99,8 +99,8 @@ int main()
     }
 
     //Sort into new file with .tsv
-    char filename_2 [] = 
-    FILE *file_2 = fopen(filename_2, "w");
+    strcat(filename, ".tsv");
+    FILE *file_2 = fopen(filename, "w");
     if(file_2 == NULL)
     {
         perror("");
