@@ -56,7 +56,7 @@ int main()
     //Get filename
     printf("Enter filename: ");
     fgets(line, buffer_size, stdin);
-    sscanf(line, " %s ", filename);
+    sscanf(line, "%s", filename);
     //Open file
     FILE *file = fopen(filename, "r");
     //Check if valid
@@ -109,7 +109,7 @@ int main()
 
     for(int i = 0; i < counter; i++)
     {
-        fprintf(file_2, "%s %s %d\n", Store_Array[i].date, Store_Array[i].time, Store_Array[i].steps);
+        fprintf(file_2, "%s\t%s\t%d\n", Store_Array[i].date, Store_Array[i].time, Store_Array[i].steps);
     }
 
     fclose(file_2);
